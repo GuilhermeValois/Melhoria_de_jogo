@@ -1,5 +1,4 @@
-import rich
-
+from rich.console import Console
 class Personagem:
     """
     A classe Personagem representa um personagem genérico em um jogo.
@@ -30,78 +29,151 @@ class Personagem:
     def dialogar(self, personagem):
 
         if personagem.nome == "Anissa":
-            print(f"""'O dia estava tranquilo. {self.nome} patrulhava pelas ruas fazendo a\nsegurança da cidade Quando ma figura pousa lentamente atrás dele.'\n""")
             
-            input("Pressione Enter para continuar...\n")
-            
-            print('Anissa: Você ainda insiste em proteger este planeta?\n')
+            console = Console()
+
+            console.print(
+            f"\nO dia estava tranquilo. {self.nome} patrulhava pelas ruas "
+            "fazendo a segurança da cidade.\n"
+            "Uma figura pousa lentamente atrás dele.\n",
+            style="white"
+            )
+
+            input("\nPressione Enter para continuar...\n")
+
+            console.print(
+            "🟣 Anissa: Olhe ao seu redor...\n"
+            " Anissa: Você ainda insiste em proteger este planeta?\n",
+            style="bold magenta"
+            )
 
             input("Pressione Enter para continuar...\n")
 
-            print(f'{self.nome}: Eu já disse que a Terra não pertence aos Viltrumitas.\n')
+            console.print(
+            f"🔵 {self.nome}: Eu já disse que a Terra não pertence aos Viltrumitas.\n",
+            style="bold cyan"
+            )
 
             input("Pressione Enter para continuar...\n")
 
-            print(f"""Anissa: Olhe ao seu redor, Guerras...Fome...Doenças...\nNós poderíamos acabar com tudo isso em poucos anos.\n""")
+            console.print(
+            "🟣 Anissa: Olhe ao seu redor...\n"
+            "Guerras... Fome... Doenças...\n"
+            "Nós poderíamos acabar com tudo isso em poucos anos.\n",
+            style="bold magenta"
+            )
 
             input("Pressione Enter para continuar...\n")
 
-            print(f'{self.nome}: Não à custa da liberdade da humanidade.\n')
+            console.print(
+            f"🔵 {self.nome}: Não à custa da liberdade da humanidade.\n",
+            style="bold cyan"
+            )
 
             input("Pressione Enter para continuar...\n")
 
-            print('Anissa:Lembre-se de que tentamos conversar.\n')
+            console.print(
+                "🟣 Anissa: Lembre-se de que tentamos conversar.\n",
+                style="bold magenta"
+                )
 
-            input("Pressione Enter para iniciar combate\n")
+            input("Pressione Enter para iniciar combate...\n")
 
         if personagem.nome == "Conquista":
+
+            console = Console()
             
-            print('Anissa: Alguém pior do que eu Virá...\n')
+            console.print(
+            "🟣 Anissa: Alguém pior do que eu virá...\n",
+            style="bold magenta"
+            )
 
-            print(f"""Após o combate contra Anissa, meses se passaram. {self.nome} se encontra aflito nos escombros\ndos eventos após a Guerra Invencível. Quando uma silhueta enorme aparece fazendo sombra sobre ele.\n""")
-            
-            input("Pressione Enter para continuar...\n")
-            
-            print('Conquista: Esteja pronto para minha chegada, Verme.\n')
+            console.print(
+            f"\nApós o combate contra Anissa, meses se passaram.\n"
 
-            input("Pressione Enter para continuar...\n")
-
-            print(f"""Conquista: Você recebeu ordens. Você recebeu tempo. Recebeu mais Tolerância do que a maioria\n""")
-
-            input("Pressione Enter para continuar...\n")
-
-            print("""Conquista: E mesmo assim, encontrei este planeta despreparado para a chegada do nosso império viltrum\n""")
+            f"{self.nome} se encontra aflito entre os escombros "
+            "dos eventos após a Guerra Invencível.\n"
+            "Uma silhueta enorme surge acima dele, cobrindo tudo com sua sombra.\n",
+            style="white"
+            )
 
             input("Pressione Enter para continuar...\n")
 
-            print(f'{self.nome}: Argh... Não é um bom mommento.\n')
+            console.print(
+            "🔴 Conquista: Esteja pronto para minha chegada, verme.\n",
+            style="bold red"
+            )
 
             input("Pressione Enter para continuar...\n")
 
-            print('Conquista: O império previu sua resistência e foi por isso que me enviaram.\n')
+            console.print(
+            "🔴 Conquista: Você recebeu ordens.\n"
+            "Você recebeu tempo.\n"
+            "Recebeu mais tolerância do que a maioria.\n",
+            style="bold red"
+            )
 
             input("Pressione Enter para continuar...\n")
 
-            print('Conquista: Eu sou a Conquista! Eu sou a última chance de você cumprir o seu dever!\n')
+            console.print(
+            "🔴 Conquista: E mesmo assim, encontrei este planeta "
+            "despreparado para a chegada do Império Viltrumita.\n",
+            style="bold red"
+            )
 
             input("Pressione Enter para continuar...\n")
 
-            print(f'{self.nome}: Você não entende. Toda essa destruição é culpa minha.\n')
+            console.print(
+            f"🔵 {self.nome}: Argh... Não é um bom momento.\n",
+            style="bold cyan"
+            )
 
             input("Pressione Enter para continuar...\n")
 
-            print(f'{self.nome}: Tudo que eu quero fazer agora é...\n')
+            console.print(
+            "🔴 Conquista: O Império previu sua resistência.\n"
+            "Foi por isso que me enviaram.\n",
+            style="bold red"
+            )
 
             input("Pressione Enter para continuar...\n")
 
-            print(f'{self.nome}: Bater em algo O MAIS FORTE QUE EU PUDER!!!\n')
+            console.print(
+             "🔴 Conquista: Eu sou Conquista!\n"
+            "Sua última chance de cumprir seu dever!\n",
+            style="bold red"
+            )
 
             input("Pressione Enter para continuar...\n")
 
-            print('Conquista: Ótimo\n')
+            console.print(
+            f"🔵 {self.nome}: Você não entende...\n"
+            "Toda essa destruição é culpa minha.\n",
+            style="bold cyan"
+            )
 
+            input("Pressione Enter para continuar...\n")
 
-            input("Pressione Enter para iniciar combate")
+            console.print(
+            f"🔵 {self.nome}: Tudo o que eu quero fazer agora é...\n",
+            style="bold cyan"
+            )
+
+            input("Pressione Enter para continuar...\n")
+
+            console.print(
+            f"🔵 {self.nome}: BATER EM ALGO O MAIS FORTE QUE EU PUDER!!!\n",
+            style="bold bright_cyan"
+            )
+
+            input("Pressione Enter para continuar...\n")
+
+            console.print(
+            "🔴 Conquista: Ótimo.\n",
+            style="bold red"
+            )
+
+            input("Pressione Enter para iniciar combate...\n")
 
         if personagem == "Thragg":
 
