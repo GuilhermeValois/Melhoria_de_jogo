@@ -117,7 +117,7 @@ def main():
                     heroi.vida = heroi.vida_max
                     heroi.pontos = heroi.pontos_max
                     break
-            utils.istribuição_pontos(heroi, ataque_heroi, defesa_heroi, bonus_heroi, vilao, ataque_vilao, defesa_vilao, bonus_vilao)
+            utils.distribuição_pontos(heroi, ataque_heroi, defesa_heroi, bonus_heroi, vilao, ataque_vilao, defesa_vilao, bonus_vilao)
             utils.status(heroi,vilao)
        
         

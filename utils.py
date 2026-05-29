@@ -2,7 +2,9 @@ import os
 from rich.console import Console
 from rich.panel import Panel
 from rich.align import Align
-import emoji
+from rich.table import Table
+from rich.columns import Columns
+
 
 def limpar():
     os.system('cls')
@@ -32,9 +34,28 @@ def status(personagem1,personagem2):
 
     console.print(Panel(Align.center(f"{personagem1.nome}:[{barra1}{vazio1}] {personagem1.vida}/{personagem1.vida_max} PTS: {personagem1.pontos} DANO: {personagem1.dano}  {personagem2.nome}:[{barra2}{vazio2}] {personagem2.vida}/{personagem2.vida_max} PTS: {personagem2.pontos} DANO: {personagem2.dano}"), title = "STATUS", border_style = "blue"))
 
-def istribuição_pontos(heroi,ataque_heroi,defesa_heroi,bonus_heroi,vilao,ataque_vilao,defesa_vilao,bonus_vilao):
+def distribuição_pontos(heroi,ataque_heroi,defesa_heroi,bonus_heroi,vilao,ataque_vilao,defesa_vilao,bonus_vilao):
     console = Console()
-    Painel1 = Panel(Align.center(f"{heroi.nome}:\nAtaque:{ataque_heroi}\nDefesa:{defesa_heroi}\nBônus:{bonus_heroi}\n\n{vilao.nome}:\nAtaque:{ataque_vilao}\nDefesa:{defesa_vilao}\nBônus:{bonus_vilao}"), border_style = "red")
-    Painel2 = Panel(Align.center(f"{vilao.nome}:\nAtaque:{ataque_vilao}\nDefesa:{defesa_vilao}\nBônus:{bonus_vilao}\n\n{heroi.nome}:\nAtaque:{ataque_heroi}\nDefesa:{defesa_heroi}\nBônus:{bonus_heroi}"), border_style = "green")
-    console.print(Painel1)
-    console.print(Painel2)
+
+    tabela_heroi = Table(title = f"🔵 {heroi.nome} ")
+    tabela_heroi.add_column("Atributos",)
+    tabela_heroi.add_column("Pontos")
+
+    tabela_heroi.add_row("⚔️  Dano", f"{ataque_heroi}")
+    tabela_heroi.add_row("🛡️  Defesa", f"{defesa_heroi}")
+    tabela_heroi.add_row("✨ Bônus", f"{bonus_heroi}")
+
+    tabela_vilao = Table(title = f"🔴 {vilao.nome} ")
+    tabela_vilao.add_column("Atributos",)
+    tabela_vilao.add_column("Pontos")
+
+    tabela_vilao.add_row("⚔️  Dano", f"{ataque_vilao}")
+    tabela_vilao.add_row("🛡️  Defesa", f"{defesa_vilao}")
+    tabela_vilao.add_row("✨ Bônus", f"{bonus_vilao}")
+
+    ' '
+
+    
+    
+    console.print(Columns([tabela_heroi, tabela_vilao], align = "center"))
+    
