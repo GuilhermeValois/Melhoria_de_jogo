@@ -5,8 +5,9 @@ class Heroi(Personagem):
     A classe Heroi representa as características de um vilão no jogo.
     Herda da classe Personagem.
     """
-    def __init__(self, nome, idade, vida, dano, pontos):
+    def __init__(self, nome, idade, vida,vida_max, dano, pontos):
         super().__init__(nome, idade, vida)
+        self.vida_max = vida_max
         self.dano = dano
         self.pontos = pontos
 
@@ -17,7 +18,7 @@ class Heroi(Personagem):
         personagem.vida -=self.dano*pontos
         if personagem.vida < 0:
             personagem.vida = 0
-        print(f'{self.nome} atacou {personagem.nome} com {self.dano * pontos} de dano!')
+
         
     
     def bonificar(self, pontos_bonus):

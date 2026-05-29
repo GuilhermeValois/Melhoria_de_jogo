@@ -2,33 +2,40 @@ from personagem import Personagem
 from heroi import Heroi
 from vilao import Vilao
 import random
-
+import emoji
+import rich
+import utils
 
 def main():
     # Criando personagens e vilões
-    heroi = Heroi('Heroi', 30, 100, 12, 2)
-    vilao = Vilao('Conquista', 45, 120, 'Alta', 15, 2)
+    vilao1 = Vilao('Anissa', 3000, 100, 100, 20, 2)
+    vilao2 = Vilao('Conquista', 5000, 120, 120, 25, 2)
+    vilao3 = Vilao('Thragg', 4000, 180, 180, 25, 30)
     while True:
         heroi_nome = input("Digite o nome do herói: ")
         if heroi_nome:
-            heroi = Heroi(heroi_nome, 30, 100, 12, 2)
+            heroi = Heroi(heroi_nome, 19, 100, 100, 12, 2)
+            utils.limpar()
             break
 
-    ataque_heroi = 0
-    defesa_heroi = 0
-    bonus_heroi = 0
-    print(f"\nVocê enfrentará o vilão {vilao.nome}.")
+    
+    
+    heroi.dialogar(vilao2)
+    utils.limpar()
+    utils.titulo_combate()
+    utils.status(heroi)
+    utils.status(vilao2)
     while True:
+        ataque_heroi = 0
+        defesa_heroi = 0
+        bonus_heroi = 0
 
         if heroi.vida <= 0:
-            print(f"\n{heroi.nome} foi derrotado por {vilao.nome}!")
+            print(f"\n{heroi.nome} foi derrotado por {vilao2.nome}!")
             break
-        if vilao.vida <= 0:
-            print(f"\n{vilao.nome} foi derrotado por {heroi.nome}!")
+        if vilao2.vida <= 0:
+            print(f"\n{vilao2.nome} foi derrotado por {heroi.nome}!")
             break
-
-        print(f"\nVida de {heroi.nome}: {heroi.vida}////Vida de {vilao.nome}: {vilao.vida}")
-        print(f"Pontos de {heroi.nome}: {heroi.pontos}/////Pontos de {vilao.nome}: {vilao.pontos}")
 
         while True:
             try:
@@ -60,13 +67,15 @@ def main():
         if 0 != heroi.pontos:
             bonus_heroi = heroi.pontos
         
-        heroi.pontos = 2 + bonus_heroi
+       
 
-        ataque_vilao = random.randint(0, vilao.pontos)
-        defesa_vilao = random.randint(0, vilao.pontos - ataque_vilao)
-        bonus_vilao = vilao.pontos - ataque_vilao - defesa_vilao
+        ataque_vilao = random.randint(0, vilao2.pontos)
+        resto_pontos = vilao2.pontos - ataque_vilao
+        defesa_vilao = random.randint(0, resto_pontos)
+        bonus_vilao = vilao2.pontos - ataque_vilao - defesa_vilao
+        
 
-        vilao.pontos = 2 + bonus_vilao
+        
 
         Ataque_final_heroi = ataque_heroi - defesa_vilao
         Ataque_final_vilao = ataque_vilao - defesa_heroi
@@ -75,29 +84,18 @@ def main():
         if Ataque_final_vilao < 0:
             Ataque_final_vilao = 0
 
-        heroi.ataque(vilao, Ataque_final_heroi)
-        print(f"{heroi.nome} se defendeu com {defesa_heroi} pontos!")
-        vilao.ataque(heroi, Ataque_final_vilao)
-        print(f"{vilao.nome} se defendeu com {defesa_vilao} pontos!")
-
+        heroi.pontos = 2 + bonus_heroi
+        vilao2.pontos = 2 + bonus_vilao
+       
+        heroi.ataque(vilao2, Ataque_final_heroi)
         
+        vilao2.ataque(heroi, Ataque_final_vilao)
+        
+        utils.status(heroi)
+        utils.status(vilao2)
         
        
 
-    # Mostrando personagens
-    print(heroi)
-    print(vilao)
-
-    # Vilão ataca o herói
-    vilao.ataque(heroi)
-
-    # Melhorando a vida do herói
-    heroi.upgrade_vida(20)
-    print(f'{heroi.nome} após upgrade de vida: {heroi.vida}')
-
-    # Mudando nome do NPC
-    npc.update_nome('Princesa Zelda')
-    print(f'Nome atualizado: {npc.nome}')
-
+ 
 if __name__ == "__main__":
     main()
