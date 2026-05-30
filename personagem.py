@@ -3,28 +3,53 @@ class Personagem:
     """
     A classe Personagem representa um personagem genérico em um jogo.
     """
-    def __init__(self, nome, idade, vida):
+    def __init__(self, nome, vida):
         self.nome = nome
-        self.idade = idade
         self.vida = vida
 
     def upgrade_vida(self, incremento=10):
         """
         Aumenta a vida do personagem. O valor padrão de incremento é 10.
         """
-        self.vida += incremento
-        print(f'Vida de {self.nome} após upgrade: {self.vida}')
+        self.vida_max += incremento
+        print(f'{self.nome} recebeu {incremento} de vida. Vida atual: {self.vida_max}')
+        input("Pressione Enter para continuar...")
 
 
-    def downgrade_vida(self):
+    def upgrade_dano(self, incremento=1):
         """
-        Reduz a vida do personagem, garantindo que não fique negativa.
+        Aumenta o dano do personagem. O valor padrão de incremento é 1.
         """
-        if self.vida > 15:
-            self.vida -= 15
-        else:
-            self.vida = 0
-        print(f'Vida de {self.nome} após downgrade: {self.vida}')
+        self.dano += incremento
+        print(f'{self.nome} recebeu {incremento} de dano. Dano atual: {self.dano}')
+        input("Pressione Enter para continuar...")
+
+    def upgrade_velocidade(self, incremento=4):
+        """
+        Aumenta a velocidade do personagem. O valor padrão de incremento é 1.
+        """
+        self.velocidade += incremento
+        print(f'{self.nome} recebeu {incremento} de velocidade. Velocidade atual: {self.velocidade}')
+        input("Pressione Enter para continuar...")
+
+    def upgrade_pontos_base(self, incremento=1):
+        """
+        Aumenta os pontos base do personagem. O valor padrão de incremento é 1.
+        """
+        if self.nome == "Eve Atômica" or self.nome == "Invencível":
+            if self.pontos_base < 3:
+                self.pontos_base += incremento
+                print(f'{self.nome} recebeu {incremento} de pontos base. Pontos base atuais: {self.pontos_base}')
+            else:
+                print(f'{self.nome} já atingiu o limite de pontos base. Pontos base atual: {self.pontos_base}')
+        if self.nome == "Allen":
+            if self.pontos_base < 4:
+                self.pontos_base += incremento
+                print(f'{self.nome} recebeu {incremento} de pontos base. Pontos base atuais: {self.pontos_base}')
+            else:
+                print(f'{self.nome} já atingiu o limite de pontos base. Pontos base atual: {self.pontos_base}')
+        input("Pressione Enter para continuar...")
+        
 
     def dialogar(self, personagem):
 
@@ -57,7 +82,7 @@ class Personagem:
             input("Pressione Enter para continuar...\n")
 
             console.print(
-            "🟣 Anissa: Olhe ao seu redor...\n"
+            "🟣 Anissa: Não está claro?\n"
             "Guerras... Fome... Doenças...\n"
             "Nós poderíamos acabar com tudo isso em poucos anos.\n",
             style="bold magenta"
@@ -93,7 +118,7 @@ class Personagem:
 
             f"{self.nome} se encontra aflito entre os escombros "
             "dos eventos após a Guerra Invencível.\n"
-            "Uma silhueta enorme surge acima dele, cobrindo tudo com sua sombra.\n",
+            "Uma silhueta enorme surge acima dele, o cobrindo completamente com sua sombra.\n",
             style="white"
             )
 
@@ -177,7 +202,111 @@ class Personagem:
 
         if personagem == "Thragg":
 
-            print(f"""'Após o combate contra Conquista, meses se passaram. {self.nome} se encontra aflito nos escombros após os eventos da Guerra Invencível. Quando uma silhueta enorme aparece fazendo sobre ele.\n""")
+            console.print(
+            f"\nAnos se passaram desde a batalha contra Conquista.\n"
+            f"{self.nome} entende que para por fim em tudo, presica derrotar Thragg.\n"
+            f"Então junto da Coalizão de Planetas parte rumo Guerra Viltrmita.\n",
+            style="white"
+            )
+
+            input("Pressione Enter para continuar...\n")
+
+            console.print(
+            f"Então {self.nome} se depara com o grande regente do Império Viltrumita.\n",
+            style="white"
+            )
+
+            input("Pressione Enter para continuar...\n")
+
+            console.print(
+            "👑 Thragg: Então é você.\n",
+            style="bold yellow"
+            )
+
+            input("Pressione Enter para continuar...\n")
+
+            console.print(
+            f"🔵 {self.nome}: ...\n",
+            style="bold cyan"
+            )
+
+            input("Pressione Enter para continuar...\n")
+
+            console.print(
+            "👑 Thragg: O responsável pela resistência terrestre.\n"
+            "O responsável por desafiar o Império repetidas vezes.\n",
+            style="bold yellow"
+            )
+
+            input("Pressione Enter para continuar...\n")
+
+            console.print(
+            f"🔵 {self.nome}: Você é Thragg.\n",
+            style="bold cyan"
+            )
+
+            input("Pressione Enter para continuar...\n")
+
+            console.print(
+            "👑 Thragg: Vejo que meu nome ainda inspira respeito.\n",
+            style="bold yellow"
+            )
+
+            input("Pressione Enter para continuar...\n")
+
+            console.print(
+            f"🔵 {self.nome}: Respeito não é a palavra que eu usaria.\n",
+            style="bold cyan"
+            )
+
+            input("Pressione Enter para continuar...\n")
+
+            console.print(
+            "👑 Thragg: Anissa falhou.\n"
+            "Conquista falhou.\n"
+            "E agora o Império perdeu a paciência.\n",
+            style="bold yellow"
+            )
+
+            input("Pressione Enter para continuar...\n")
+
+            console.print(
+            f"🔵 {self.nome}: Então veio terminar o trabalho?\n",
+            style="bold cyan"
+            )
+
+            input("Pressione Enter para continuar...\n")
+
+            console.print(
+            "👑 Thragg: Não.\n",
+            style="bold yellow"
+            )
+
+            input("Pressione Enter para continuar...\n")
+
+            console.print(
+            "👑 Thragg: Eu vim provar por que sou o regente dos Viltrumitas.\n",
+            style="bold yellow"
+            )
+
+            input("Pressione Enter para continuar...\n")
+
+            console.print(
+            f"🔵 {self.nome}: EU MATEI O CONQUISTA!.\n",
+            style="bold cyan"
+            )
+
+            input("Pressione Enter para continuar...\n")
+
+            console.print(
+            "👑 Thragg: Conquista não passava de um cachorrinho meu.\n",
+            style="bold yellow"
+            )
+
+            input("Pressione Enter para iniciar combate...\n")
+
+
+            
 
     def update_nome(self, nome_editado):
         """

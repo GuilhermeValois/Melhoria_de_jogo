@@ -6,13 +6,13 @@ class Vilao(Personagem):
     A classe Vilao representa as características de um vilão no jogo.
     Herda da classe Personagem.
     """
-    def __init__(self, nome, idade, vida,vida_max, dano, pontos,pontos_base,Velocidade):
-        super().__init__(nome, idade, vida)
+    def __init__(self, nome, vida,vida_max, dano, pontos,pontos_base,velocidade):
+        super().__init__(nome, vida)
         self.vida_max = vida_max
         self.dano = dano
         self.pontos = pontos
         self.pontos_base = pontos_base
-        self.Velocidade = Velocidade
+        self.Velocidade = velocidade
 
     def ataque(self, personagem,pontos): 
         """
@@ -24,10 +24,9 @@ class Vilao(Personagem):
         
 
     def bonificar(self, pontos_bonus):
-        if self.pontos < 4:
-            self.pontos = self.pontos_base + pontos_bonus + 1
-        elif self.pontos >= 4 and self.pontos < 8:
-            self.pontos = self.pontos_base + pontos_bonus
+        
+        self.pontos = self.pontos_base + pontos_bonus
+        
         if self.pontos > 8:
             self.pontos = 8
 
