@@ -14,10 +14,36 @@ def titulo_combate():
     console = Console()
     console.print(Panel(Align.center("A batalha começou!"), title = "⚔️ COMBATE⚔️", border_style = "red"))
 
+def derrota(vilao):
+    console = Console()
+    console.print(Panel(Align.center(f"Você foi derrotado! por {vilao.nome}"), title = "DERROTA", border_style = "red"))
+
+def vitoria(vilao):
+    console = Console()
+    console.print(Panel(Align.center(f"Parabéns! Você derrotou {vilao.nome}!"), title = "VITÓRIA", border_style = "green"))
+
 def titulo_História(heroi, vilao):
 
     console = Console()
     console.print(Panel(Align.center(f"{heroi.nome} VS {vilao.nome}"), title = "HISTÓRIA", border_style = "yellow"))
+
+def escolher_heroi(heroi1,heroi2,heroi3):
+    console = Console()
+    tabela_heroi = Table(title = "HERÓIS", show_lines = True)
+    tabela_heroi.add_column("Atributos",justify="center",)
+    tabela_heroi.add_column("[cyan]Invencível[/cyan]", justify="center")
+    tabela_heroi.add_column("[hot_pink]Eve Atômica[/hot_pink]", justify="center")
+    tabela_heroi.add_column("[orange1]Allen[/orange1]", justify="center")
+
+    tabela_heroi.add_row("Dano", f"{heroi1.dano}", f"{heroi2.dano}", f"{heroi3.dano}")
+    tabela_heroi.add_row("Vida", f"{heroi1.vida_max}", f"{heroi2.vida_max}", f"{heroi3.vida_max}")
+    tabela_heroi.add_row("Velocidade", f"{heroi1.velocidade}", f"{heroi2.velocidade}", f"{heroi3.velocidade}")
+    tabela_heroi.add_row("Pontos Base", f"{heroi1.pontos_base}", f"{heroi2.pontos_base}", f"{heroi3.pontos_base}")
+    tabela_heroi.add_row("Opções", "OPÇÃO 1", "OPÇÃO 2", "OPÇÃO 3")
+    console.print(Panel(Align.center(tabela_heroi), title = "ESCOLHA SEU HERÓI", border_style = "green"))
+    print("Digite o número do herói que deseja jogar:\n")
+    
+
 
 def status(personagem1,personagem2):
 
@@ -71,7 +97,12 @@ def menu_de_melhora(heroi,pontos_upgrade):
         console.print(Panel(Align.center(f"Você possui {quantidade_de_melhorias} para distribuir:\n[1]-Vida +10\n[2]-Dano +1\n[3]-Velocidade +4\n[4]-Pontos Base +1"), title = "MELHORIAS", border_style = "green"))
         opcao = input()
         if opcao in ["1", "2", "3", "4"]:
-            quantidade_de_melhorias -= 1
-            heroi.melhorar(opcao)
+            if heroi.nome == "Invencível" or heroi.nome == "Eve Atômica" and heroi.pontos_base == 3 and opcao == "4":
+                heroi.melhorar(opcao)
+            elif heroi.nome == "Allen" and heroi.pontos_base == 4 and opcao == "4":
+                heroi.melhorar(opcao)   
+            else:
+                quantidade_de_melhorias -= 1
+                heroi.melhorar(opcao)
         else:
             print("Opção inválida. Por favor, escolha uma opção válida.")

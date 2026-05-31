@@ -17,7 +17,9 @@ def main():
     utils.limpar()
     upgrade_pontos = 0
     while True:
-        heroi_nome = input("Digite o herói que deseja jogar:\n[1]. Invencível\n[2]. Eve Atômica\n[3]. Allen\n")
+
+        utils.escolher_heroi(heroi1, heroi2, heroi3)
+        heroi_nome = input()
         if heroi_nome == "1":
             heroi = heroi1
             utils.limpar()
@@ -31,7 +33,9 @@ def main():
             utils.limpar()
             break
         else:
+            utils.limpar()
             print("Opção inválida! Por favor, escolha um número entre 1 e 3.")
+            
             continue
 
 
@@ -97,7 +101,7 @@ def main():
             vilao.bonificar(bonus_vilao)
             
         
-            if heroi.Velocidade > vilao.Velocidade: 
+            if heroi.velocidade > vilao.velocidade: 
                 heroi.ataque(vilao, ataque_final_heroi)
                 
                 if vilao.vida <= 0:
@@ -105,7 +109,7 @@ def main():
                     utils.distribuição_pontos(heroi, ataque_heroi, defesa_heroi, bonus_heroi, vilao, ataque_vilao, defesa_vilao, bonus_vilao)
                     utils.resultado(heroi,vilao,ataque_final_heroi,ataque_final_vilao)
                     utils.status(heroi,vilao)
-                    print(f"\n{heroi.nome} derrotou {vilao.nome}!")
+                    utils.vitoria(vilao)
                     input("Pressione Enter para continuar...")
                     utils.menu_de_melhora(heroi,upgrade_pontos)
                     heroi.vida = heroi.vida_max
@@ -116,11 +120,11 @@ def main():
                     utils.distribuição_pontos(heroi, ataque_heroi, defesa_heroi, bonus_heroi, vilao, ataque_vilao, defesa_vilao, bonus_vilao)
                     utils.resultado(heroi,vilao,ataque_final_heroi,ataque_final_vilao)
                     utils.status(heroi,vilao)
-                    print(f"\n{heroi.nome} foi derrotado por {vilao.nome}!FIM DE JOGO!")
+                    utils.derrota(vilao)
                     return
                 
         
-            elif vilao.Velocidade > heroi.Velocidade:
+            elif vilao.velocidade > heroi.velocidade:
             
                 vilao.ataque(heroi, ataque_final_vilao)
                 
@@ -128,7 +132,8 @@ def main():
                     utils.distribuição_pontos(heroi, ataque_heroi, defesa_heroi, bonus_heroi, vilao, ataque_vilao, defesa_vilao, bonus_vilao)
                     utils.resultado(heroi,vilao,ataque_final_heroi,ataque_final_vilao)
                     utils.status(heroi,vilao)
-                    print(f"\n{heroi.nome} foi derrotado por {vilao.nome}!")
+                    utils.derrota(vilao)
+
                     return
                 heroi.ataque(vilao, ataque_final_heroi)
                 if vilao.vida <= 0:
@@ -136,11 +141,11 @@ def main():
                     utils.distribuição_pontos(heroi, ataque_heroi, defesa_heroi, bonus_heroi, vilao, ataque_vilao, defesa_vilao, bonus_vilao)
                     utils.resultado(heroi,vilao,ataque_final_heroi,ataque_final_vilao)
                     utils.status(heroi,vilao)
-                    print(f"\n{heroi.nome} derrotou {vilao.nome}!")
+                    utils.vitoria(vilao)
                     input("Pressione Enter para continuar...")
                     utils.menu_de_melhora(heroi,upgrade_pontos)
                     heroi.vida = heroi.vida_max
-                    heroi.pontos = heroi.pontos_max
+                    heroi.pontos = heroi.pontos_base
                     break
             
             utils.distribuição_pontos(heroi, ataque_heroi, defesa_heroi, bonus_heroi, vilao, ataque_vilao, defesa_vilao, bonus_vilao)

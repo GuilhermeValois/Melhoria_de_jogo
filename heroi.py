@@ -11,7 +11,7 @@ class Heroi(Personagem):
         self.dano = dano
         self.pontos = pontos
         self.pontos_base = pontos_base
-        self.Velocidade = velocidade
+        self.velocidade = velocidade
 
     def ataque(self, personagem,pontos):
         """

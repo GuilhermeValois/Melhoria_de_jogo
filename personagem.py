@@ -1,4 +1,5 @@
 from rich.console import Console
+import utils
 class Personagem:
     """
     A classe Personagem representa um personagem genérico em um jogo.
@@ -42,6 +43,7 @@ class Personagem:
                 print(f'{self.nome} recebeu {incremento} de pontos base. Pontos base atuais: {self.pontos_base}')
             else:
                 print(f'{self.nome} já atingiu o limite de pontos base. Pontos base atual: {self.pontos_base}')
+                
         if self.nome == "Allen":
             if self.pontos_base < 4:
                 self.pontos_base += incremento
