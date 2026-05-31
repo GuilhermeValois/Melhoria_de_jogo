@@ -4,6 +4,7 @@ from rich.panel import Panel
 from rich.align import Align
 from rich.table import Table
 from rich.columns import Columns
+import json
 
 
 def limpar():
@@ -26,6 +27,15 @@ def titulo_História(heroi, vilao):
 
     console = Console()
     console.print(Panel(Align.center(f"{heroi.nome} VS {vilao.nome}"), title = "HISTÓRIA", border_style = "yellow"))
+
+def salvar_historico(historico):
+    with open("historico.json", "w", encoding="utf-8") as arq:
+        json.dump(historico, arq, ensure_ascii=False, indent=4)
+
+def salvar_personagens(personagens_lista):
+    with open("Personagens_descrição.json", "w", encoding="utf-8") as arq:
+        json.dump(personagens_lista, arq, ensure_ascii=False, indent=4)
+
 
 def escolher_heroi(heroi1,heroi2,heroi3):
     console = Console()

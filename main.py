@@ -2,10 +2,12 @@ from personagem import Personagem
 from heroi import Heroi
 from vilao import Vilao
 import random
-import emoji
+import json
 import utils
 
 def main():
+
+    
     # Criando personagens e vilões
     heroi1 = Heroi('Invencível', 100, 100, 12, 2,2,20)
     heroi2 = Heroi('Eve Atômica', 80, 80, 16, 2,2,14)
@@ -13,7 +15,28 @@ def main():
     vilao1 = Vilao('Anissa', 100, 100, 11, 2,2,11)
     vilao2 = Vilao('Conquista', 140, 140, 16, 3,3, 16)
     vilao3 = Vilao('Thragg', 180, 180, 18, 4,4, 25)
-    vilaolista = [vilao1, vilao2, vilao3]
+    historico_jogo = []
+    historico_batalha = []
+    vilao_lista = [vilao1, vilao2, vilao3]
+    
+    personagens_lista = [heroi1, heroi2, heroi3, vilao1, vilao2, vilao3]
+    personagens_dicionarios = []
+    
+    for personagem in personagens_lista:
+        personagem_descricao = {
+            'nome': personagem.nome,
+            'vida': personagem.vida,
+            'vida máxima': personagem.vida_max,
+            'dano': personagem.dano,
+            'pontos': personagem.pontos,
+            'pontos base': personagem.pontos_base,
+            'velocidade': personagem.velocidade
+        }
+        personagens_dicionarios.append(personagem_descricao)
+    utils.salvar_personagens(personagens_dicionarios)
+    
+    
+
     utils.limpar()
     upgrade_pontos = 0
     while True:
@@ -39,7 +62,7 @@ def main():
             continue
 
 
-    for vilao in vilaolista:
+    for vilao in vilao_lista:
         utils.limpar()
         utils.titulo_História(heroi, vilao)
         heroi.dialogar(vilao)
@@ -108,6 +131,10 @@ def main():
                     upgrade_pontos += 3
                     utils.distribuição_pontos(heroi, ataque_heroi, defesa_heroi, bonus_heroi, vilao, ataque_vilao, defesa_vilao, bonus_vilao)
                     utils.resultado(heroi,vilao,ataque_final_heroi,ataque_final_vilao)
+                    historico_batalha.append(f"{heroi.nome} atacou com {ataque_final_heroi*heroi.dano} de dano\nVITÓRIA")
+                    registro = {'vilão': vilao.nome,'histórico': historico_batalha}
+                    historico_jogo.append(registro)
+                    utils.salvar_historico(historico_jogo)
                     utils.status(heroi,vilao)
                     utils.vitoria(vilao)
                     input("Pressione Enter para continuar...")
@@ -119,8 +146,13 @@ def main():
                 if heroi.vida <= 0:
                     utils.distribuição_pontos(heroi, ataque_heroi, defesa_heroi, bonus_heroi, vilao, ataque_vilao, defesa_vilao, bonus_vilao)
                     utils.resultado(heroi,vilao,ataque_final_heroi,ataque_final_vilao)
+                    historico_batalha.append(f"{heroi.nome} atacou com {ataque_final_heroi*heroi.dano} de dano e {vilao.nome} atacou com {ataque_final_vilao*vilao.dano} de dano\nDERRTOA ")
+                    registro = {'vilão': vilao.nome,'histórico': historico_batalha}
+                    historico_jogo.append(registro)
+                    utils.salvar_historico(historico_jogo)
                     utils.status(heroi,vilao)
                     utils.derrota(vilao)
+                    input("Pressione Enter para continuar...")
                     return
                 
         
@@ -131,15 +163,23 @@ def main():
                 if heroi.vida <= 0:
                     utils.distribuição_pontos(heroi, ataque_heroi, defesa_heroi, bonus_heroi, vilao, ataque_vilao, defesa_vilao, bonus_vilao)
                     utils.resultado(heroi,vilao,ataque_final_heroi,ataque_final_vilao)
+                    historico_batalha.append(f"{vilao.nome} atacou com {ataque_final_vilao*vilao.dano} de dano\nDERRTOA ")
+                    registro = {'vilão': vilao.nome,'histórico': historico_batalha}
+                    historico_jogo.append(registro)
+                    utils.salvar_historico(historico_jogo)
                     utils.status(heroi,vilao)
                     utils.derrota(vilao)
-
+                    input("Pressione Enter para continuar...")
                     return
                 heroi.ataque(vilao, ataque_final_heroi)
                 if vilao.vida <= 0:
                     upgrade_pontos += 3
                     utils.distribuição_pontos(heroi, ataque_heroi, defesa_heroi, bonus_heroi, vilao, ataque_vilao, defesa_vilao, bonus_vilao)
                     utils.resultado(heroi,vilao,ataque_final_heroi,ataque_final_vilao)
+                    historico_batalha.append(f"{vilao.nome} atacou com {ataque_final_vilao*vilao.dano} de dano e {heroi.nome} atacou com {ataque_final_heroi*heroi.dano} de dano\nVITÓRIA") 
+                    registro = {'vilão': vilao.nome,'histórico': historico_batalha}
+                    historico_jogo.append(registro)
+                    utils.salvar_historico(historico_jogo)
                     utils.status(heroi,vilao)
                     utils.vitoria(vilao)
                     input("Pressione Enter para continuar...")
@@ -150,6 +190,10 @@ def main():
             
             utils.distribuição_pontos(heroi, ataque_heroi, defesa_heroi, bonus_heroi, vilao, ataque_vilao, defesa_vilao, bonus_vilao)
             utils.resultado(heroi,vilao,ataque_final_heroi,ataque_final_vilao)
+            if heroi.velocidade > vilao.velocidade:
+                historico_batalha.append(f"{heroi.nome} atacou com {ataque_final_heroi} de dano e {vilao.nome} atacou com {ataque_final_vilao} de dano\n")
+            else:
+                historico_batalha.append(f"{vilao.nome} atacou com {ataque_final_vilao} de dano e {heroi.nome} atacou com {ataque_final_heroi} de dano\n")
             utils.status(heroi,vilao)
        
         

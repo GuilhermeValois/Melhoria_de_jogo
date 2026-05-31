@@ -1,0 +1,56 @@
+[
+    {
+        "nome": "Invencível",
+        "vida": 100,
+        "vida máxima": 100,
+        "dano": 12,
+        "pontos": 2,
+        "pontos base": 2,
+        "velocidade": 20
+    },
+    {
+        "nome": "Eve Atômica",
+        "vida": 80,
+        "vida máxima": 80,
+        "dano": 16,
+        "pontos": 2,
+        "pontos base": 2,
+        "velocidade": 14
+    },
+    {
+        "nome": "Allen",
+        "vida": 130,
+        "vida máxima": 130,
+        "dano": 10,
+        "pontos": 3,
+        "pontos base": 3,
+        "velocidade": 15
+    },
+    {
+        "nome": "Anissa",
+        "vida": 100,
+        "vida máxima": 100,
+        "dano": 11,
+        "pontos": 2,
+        "pontos base": 2,
+        "velocidade": 11
+    },
+    {
+        "nome": "Conquista",
+        "vida": 140,
+        "vida máxima": 140,
+        "dano": 16,
+        "pontos": 3,
+        "pontos base": 3,
+        "velocidade": 16
+    },
+    {
+        "nome": "Thragg",
+        "vida": 180,
+        "vida máxima": 180,
+        "dano": 18,
+        "pontos": 4,
+        "pontos base": 4,
+        "velocidade": 25
+    }
+]
